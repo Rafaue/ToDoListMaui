@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:ToDoListApp.Views"
+       x:Class="ToDoListApp.AppShell"
+       Title="ToDoListApp"
+       FlyoutBehavior="Flyout">
+
+    <Shell.FlyoutHeader>
+        <Grid BackgroundColor="{StaticResource Primary}" Padding="20">
+            <StackLayout>
+                <Image Source="app_icon.png" 
+                       HeightRequest="80" 
+                       HorizontalOptions="Center" />
+                <Label Text="ToDo List App" 
+                       FontSize="20" 
+                       FontAttributes="Bold" 
+                       TextColor="White" 
+                       HorizontalOptions="Center" />
+                <Label Text="{Binding Username}" 
+                       TextColor="White" 
+                       HorizontalOptions="Center" />
+            </StackLayout>
+        </Grid>
+    </Shell.FlyoutHeader>
+
+
+
+    <FlyoutItem Title="Tasks" Icon="icon_tasks_babypurple" Route="TasksPage">
+        <ShellContent ContentTemplate="{DataTemplate views:TasksPage}" />
+    </FlyoutItem>
+    
+    <FlyoutItem 
+        Title="Admin Panel"
+        Icon="icon_admin_babypurple" 
+        IsVisible="{Binding IsAdmin}" 
+        Route="AdminPage">
+        <ShellContent ContentTemplate="{DataTemplate views:AdminPage}" />
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Settings" 
+               Icon="icon_settings_babypurple"
+               Route="SettingsPage">
+        <ShellContent ContentTemplate="{DataTemplate views:SettingsPage}" />
+    </FlyoutItem>
+              
+    <MenuItem Text="Logout" 
+              Command="{Binding LogoutCommand}" 
+              IconImageSource="icon_logout_babypurple" />
+
+    <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate views:LoginPage}" />
+    <ShellContent Route="RegisterPage" ContentTemplate="{DataTemplate views:RegisterPage}" />
+    <ShellContent Route="TaskDetailPage" ContentTemplate="{DataTemplate views:TaskDetailPage}" />
+    <ShellContent Route="SettingsPage" ContentTemplate="{DataTemplate views:SettingsPage}" />
+</Shell>
